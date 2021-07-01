@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Employees</title>
+</head>
+
+<body>
+<h1>Employees List</h1>
+<br/><br/>
+<div>
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Position</th>
+      <th>Salary</th>
+    </tr>
+    <tr th:each ="employee : ${employees}">
+      <td th:href = "@{/{id}(id = ${employee.getId()})}" th:utext="${employee.getName()}">...</td>
+      <td th:utext="${employee.getSurname()}">...</td>
+      <td th:utext="${employee.getPosition()}">...</td>
+      <td th:utext="${employee.getSalary()}">...</td>
+      <td>
+        <form th:method="GET" th:action = "@{/{id}/edit(id=${employee.getId()})}">
+          <input type = "submit" value = "Edit">
+        </form>
+      </td>
+      <td>
+        <form th:method="DELETE" th:action = "@{/{id}/(id=${employee.getId()})}">
+          <input type = "submit" value = "Delete">
+        </form>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+<br/>
+<br/>
+<div>
+  <form th:method="GET" th:action = "@{/new}">
+    <input type = "submit" value = "Add new employee">
+  </form>
+  <br/>
+  <form action="/report" method="GET">
+    <button type="submit">Export to Excel</button>
+  </form>
+  <br/>
+  <form actin="/logout" method="POST">
+    <button type="submit">Logout</button>
+  </form>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<form th:method= "POST" th:action="@{/registration}" th:object="${user}">
+    <label for="email">Email</label>
+    <input type = "text" th:field = "*{email}" id = "email"/>
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</div>
+    <br/>
+    <label for="firstName">Name</label>
+    <input type = "text" th:field = "*{firstName}" id = "firstName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</div>
+    <br/>
+    <label for="lastName">Surname</label>
+    <input type = "text" th:field = "*{lastName}" id = "lastName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</div>
+    <br/>
+    <label for="password">Password</label>
+    <input type = "password" th:field = "*{password}" id = "password"/>
+    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div>
+    <br/>
+    <label for="password">Confirm password</label>
+    <input type = "password" th:field = "*{confirmPassword}" id = "confirmPassword"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</div>
+    <div style="color:red" th:text = "${passwordError}">Error</div>
+    <br/>
+    <input type = "submit" value="Registrate"/>
+</form>
+</body>
+</html>
